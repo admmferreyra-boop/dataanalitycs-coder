@@ -1,12 +1,12 @@
 -- ============================================================================
--- CHECKPOINT: SCRIPT SQL DE INGENIER虯 DE DATOS
+-- CHECKPOINT: SCRIPT SQL DE INGENIER脥A DE DATOS
 -- PROYECTO: Ventas_Tech_DB (TechStore)
 -- ROL: Data Analyst / DBA
 -- SINTAXIS: SQL Server (T-SQL)
 -- ============================================================================
 
 -- ----------------------------------------------------------------------------
--- FASE 1: CREACI覰 DE LA BASE DE DATOS
+-- FASE 1: CREACI脫N DE LA BASE DE DATOS
 -- ----------------------------------------------------------------------------
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'Ventas_Tech_DB')
 BEGIN
@@ -28,17 +28,17 @@ DROP TABLE IF EXISTS categorias;
 GO
 
 -- ----------------------------------------------------------------------------
--- FASE 3: DEFINICI覰 DEL ESQUEMA (DDL - CREATE TABLES)
+-- FASE 3: DEFINICI脫N DEL ESQUEMA (DDL - CREATE TABLES)
 -- ----------------------------------------------------------------------------
 
--- 1. Tabla: Categor韆s (Dimensi髇)
+-- 1. Tabla: Categor铆as (Dimensi贸n)
 CREATE TABLE categorias (
     id_categoria INT PRIMARY KEY,
     nombre_categoria VARCHAR(50) NOT NULL,
     descripcion VARCHAR(200) NULL
 );
 
--- 2. Tabla: Clientes (Dimensi髇)
+-- 2. Tabla: Clientes (Dimensi贸n)
 CREATE TABLE clientes (
     id_cliente INT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -47,12 +47,12 @@ CREATE TABLE clientes (
     fecha_registro DATE NOT NULL
 );
 
--- 3. Tabla: Productos (Dimensi髇 con FK a Categor韆s)
+-- 3. Tabla: Productos (Dimensi贸n con FK a Categor铆as)
 CREATE TABLE productos (
     id_producto INT PRIMARY KEY,
     nombre_producto VARCHAR(100) NOT NULL,
     id_categoria INT NOT NULL,
-    precio DECIMAL(10,2) NOT NULL, -- Uso estricto de DECIMAL para evitar FLOAT (R鷅rica)
+    precio DECIMAL(10,2) NOT NULL, -- Uso estricto de DECIMAL para evitar FLOAT (R煤brica)
     stock INT NOT NULL DEFAULT 0,
     activo TINYINT NOT NULL DEFAULT 1,
     CONSTRAINT FK_productos_categorias FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
@@ -75,29 +75,29 @@ GO
 -- FASE 4: CARGA INICIAL DE DATOS (DML - INSERT DATA)
 -- ----------------------------------------------------------------------------
 
--- Carga de Categor韆s (4 registros)
+-- Carga de Categor铆as (4 registros)
 INSERT INTO categorias (id_categoria, nombre_categoria, descripcion) VALUES 
-(1, 'Computaci髇', 'Laptops, PCs y monitores'),
-(2, 'Accesorios', 'Perif閞icos y complementos'),
+(1, 'Computaci贸n', 'Laptops, PCs y monitores'),
+(2, 'Accesorios', 'Perif茅ricos y complementos'),
 (3, 'Audio', 'Auriculares y parlantes'),
 (4, 'Almacenamiento', 'Discos y memorias');
 
 -- Carga de Clientes (5 registros)
 INSERT INTO clientes (id_cliente, nombre, email, ciudad, fecha_registro) VALUES 
-(1, 'Mar韆 L髉ez',   'maria@mail.com',   'Buenos Aires', '2024-01-05'),
-(2, 'Carlos Ruiz',   'carlos@mail.com',  'C髍doba',      '2024-01-10'),
-(3, 'Ana G髆ez',     'ana@mail.com',     'Rosario',      '2024-02-01'),
+(1, 'Mar铆a L贸pez',   'maria@mail.com',   'Buenos Aires', '2024-01-05'),
+(2, 'Carlos Ruiz',   'carlos@mail.com',  'C贸rdoba',      '2024-01-10'),
+(3, 'Ana G贸mez',     'ana@mail.com',     'Rosario',      '2024-02-01'),
 (4, 'Pedro Sanz',    'pedro@mail.com',   'Mendoza',      '2024-02-15'),
-(5, 'Laura Torres',  'laura@mail.com',   'Tucum醤',      '2024-03-01');
+(5, 'Laura Torres',  'laura@mail.com',   'Tucum谩n',      '2024-03-01');
 
 -- Carga de Productos (6 registros)
 INSERT INTO productos (id_producto, nombre_producto, id_categoria, precio, stock, activo) VALUES 
 (1, 'Laptop Pro 15',       1, 1200.00, 15, 1),
-(2, 'Mouse Inal醡brico',   2,   28.00, 80, 1),
+(2, 'Mouse Inal谩mbrico',   2,   28.00, 80, 1),
 (3, 'Monitor 4K 27"',      1,  450.00, 12, 1),
 (4, 'Auriculares BT Pro',  3,  120.00, 35, 1),
 (5, 'SSD Externo 1TB',     4,  130.00, 18, 1),
-(6, 'Teclado Mec醤ico',    2,   95.00, 40, 1);
+(6, 'Teclado Mec谩nico',    2,   95.00, 40, 1);
 
 -- Carga de Ventas (10 registros consecutivos del 1 al 10 sin saltos)
 INSERT INTO ventas (id_venta, id_cliente, id_producto, cantidad, precio_unitario, fecha_venta) VALUES 
@@ -114,7 +114,7 @@ INSERT INTO ventas (id_venta, id_cliente, id_producto, cantidad, precio_unitario
 GO
 
 -- ----------------------------------------------------------------------------
--- FASE 5: CONSULTAS DE VALIDACI覰 Y CONTROL DE CALIDAD
+-- FASE 5: CONSULTAS DE VALIDACI脫N Y CONTROL DE CALIDAD
 -- ----------------------------------------------------------------------------
 SELECT * FROM categorias;
 SELECT * FROM clientes;
